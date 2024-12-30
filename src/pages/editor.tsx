@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import dynamic from "next/dynamic";
+import { useState } from "react";
 
 // 动态导入 Editor 组件以避免 SSR 问题
-const Editor = dynamic(() => import('@/components/editor'), {
-    ssr: false
+const Editor = dynamic(() => import("@/components/editor"), {
+  ssr: false,
 });
 
 const markdownExample = `
@@ -105,20 +105,17 @@ $$
 `;
 
 export default function Home() {
-    const [editorData, setEditorData] = useState(null);
+  const [editorData, setEditorData] = useState(null);
 
-    const handleEditorChange = (data: any) => {
-        setEditorData(data);
-        console.log('Editor data:', data);
-    };
+  const handleEditorChange = (data: any) => {
+    setEditorData(data);
+    console.log("Editor data:", data);
+  };
 
-    return (
-        <main className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">EditorJS with Math</h1>
-            <Editor 
-                markdown={markdownExample} 
-                onChange={handleEditorChange}
-            />
-        </main>
-    );
+  return (
+    <main className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">EditorJS with Math</h1>
+      <Editor markdown={markdownExample} onChange={handleEditorChange} />
+    </main>
+  );
 }
