@@ -4,6 +4,11 @@ import { useEffect, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import MarkdownIt from "markdown-it";
 import mk from "markdown-it-katex";
+import Header from "@editorjs/header";
+import Paragraph from "@editorjs/paragraph";
+import List from "@editorjs/list";
+import Code from "@editorjs/code";
+import Delimiter from "@editorjs/delimiter";
 
 // MathTool 组件
 class MathTool {
@@ -156,7 +161,24 @@ const Editor = ({ markdown, onChange }: EditorProps) => {
       const editor = new EditorJS({
         holder: "editorjs",
         tools: {
+          header: {
+            class: Header,
+            config: {
+              levels: [1, 2, 3, 4, 5, 6],
+              defaultLevel: 1,
+            },
+          },
           math: MathTool,
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar: true
+          },
+          list: {
+            class: List,
+            inlineToolbar: true
+          },
+          code: Code,
+          delimiter: Delimiter,
         },
         data: parser.parseMarkdown(markdown),
         onChange: async () => {
